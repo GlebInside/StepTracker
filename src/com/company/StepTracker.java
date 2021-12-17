@@ -10,10 +10,10 @@ public class StepTracker {
     private final ArrayList<String> months = new ArrayList<>(Arrays.asList("January", "February", "March", "April",
             "May", "June", "July", "August", "September", "October", "November", "December"));
     
-    private final ArrayList<Integer> defaultStepsArray;
+    //private final ArrayList<Integer> defaultStepsArray;
 
     public StepTracker() {
-        this.defaultStepsArray = initDefaultArray();
+        //this.defaultStepsArray = initDefaultArray();
         initStorage();
         testInit();
     }
@@ -33,7 +33,7 @@ public class StepTracker {
         storage = new HashMap<>();
         for (String month: months
              ) {
-            storage.put(month, defaultStepsArray);
+            storage.put(month, initDefaultArray());
         }
     }
     
@@ -50,16 +50,21 @@ public class StepTracker {
     }
 
     public void setTarget(int target) {
-        this.target = target;
-        System.out.println("New goal has been set: " + target + " steps");
+        if (target < 0 || target >= 50000)
+            System.out.println("Bullshit");
+        else {
+            this.target = target;
+            System.out.println("New goal has been set: " + target + " steps");
+        }
     }
 
     public void printStats(String month) {
         if (!storage.containsKey(month))
             System.out.println("Wrong month, sorry :(");
         else {
-            getStats(month);
-            monthTotal(month);
+            ArrayList<Integer> arrayList = storage.get(month);
+            getStats(month, arrayList);
+            monthTotal(month, arrayList);
             monthMax(month);
             monthAverage(month);
             monthTotalDistance(month);
@@ -83,8 +88,8 @@ public class StepTracker {
         }
     }
 
-    private void getStats(String month) {
-        ArrayList<Integer> arrayList = storage.get(month);
+    private void getStats(String month, ArrayList<Integer> arrayList) {
+
         for (int i = 0; i < 30; i++) {
             if (i == 29) {
                 System.out.print(i + 1 + " день: " + arrayList.get(i));
@@ -96,8 +101,7 @@ public class StepTracker {
     }
 
 
-    private void monthTotal(String month) {
-        ArrayList<Integer> arrayList = storage.get(month);
+    private void monthTotal(String month, ArrayList<Integer> arrayList) {
         int total = 0;
         for (Integer i : arrayList
         ) {
