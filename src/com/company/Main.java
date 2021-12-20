@@ -25,16 +25,19 @@ public class Main {
 
         while (true) {
             welcomeMsg();
-            int choice = scan.nextInt();
+            int choice = Integer.parseInt(reader.readLine());
+
             switch (choice) {
                 case 1 -> {
-                    System.out.println("Insert data: Month");
-                    String m = reader.readLine();
-                    System.out.println("Insert data: Day");
-                    int d = scan.nextInt();
-                    System.out.println("Insert data: Steps");
-                    int s = scan.nextInt();
-                    stepTracker.saveSteps(m, d, s);
+                    System.out.println("Insert data: Month Day Steps");
+                    String s = reader.readLine();
+                    String[] splitted = s.split(" ");
+                    if (splitted.length < 3) {
+                        System.out.println("Something went wrong. Check your data input, please.");
+                        break;
+                    } else {
+                        stepTracker.saveSteps(splitted[0], Integer.parseInt(splitted[1]), Integer.parseInt(splitted[2]));
+                    }
                 }
                 case 2 -> {
                     System.out.println("Insert data: Month");
