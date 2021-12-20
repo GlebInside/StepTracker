@@ -57,12 +57,12 @@ public class StepTracker {
         else {
             ArrayList<Integer> arrayList = storage.get(month);
             getStats(month, arrayList);
-            monthTotal(month, arrayList);
-            monthMax(month);
-            monthAverage(month);
-            monthTotalDistance(month);
-            monthCalories(month);
-            bestSeries(month);
+            getMonthTotal(month, arrayList);
+            getMonthMax(month);
+            getMonthAverage(month);
+            getMonthTotalDistance(month);
+            getMonthCalories(month);
+            getBestSeries(month);
         }
     }
 
@@ -95,7 +95,7 @@ public class StepTracker {
     }
 
 
-    private void monthTotal(String month, ArrayList<Integer> arrayList) {
+    private void getMonthTotal(String month, ArrayList<Integer> arrayList) {
         int total = 0;
         for (Integer i : arrayList) {
             total += i;
@@ -105,7 +105,7 @@ public class StepTracker {
 
     }
 
-    private void monthMax(String month) {
+    private void getMonthMax(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int max = 0;
         max = Collections.max(arrayList);
@@ -113,7 +113,7 @@ public class StepTracker {
         System.out.println("Max steps in " + month + ": " + max);
     }
 
-    private void monthAverage(String month) {
+    private void getMonthAverage(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int avg = 0;
 
@@ -126,7 +126,7 @@ public class StepTracker {
 
     }
 
-    private void monthTotalDistance(String month) {
+    private void getMonthTotalDistance(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int total = 0;
         for (Integer i : arrayList) {
@@ -139,7 +139,7 @@ public class StepTracker {
 
     }
 
-    private void monthCalories(String month) {
+    private void getMonthCalories(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int total = 0;
         for (Integer i : arrayList) {
@@ -152,7 +152,7 @@ public class StepTracker {
 
     }
 
-    private void bestSeries(String month) {
+    private void getBestSeries(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int best = 0;
         int count = 0;
