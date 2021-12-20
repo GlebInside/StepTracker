@@ -7,36 +7,33 @@ public class StepTracker {
     private HashMap<String, ArrayList<Integer>> storage;
     private int target = 10000;
 
-    private final ArrayList<String> months = new ArrayList<>(Arrays.asList("January", "February", "March", "April",
-            "May", "June", "July", "August", "September", "October", "November", "December"));
-    
-    //private final ArrayList<Integer> defaultStepsArray;
+    private final ArrayList<String> months = new ArrayList<>(Arrays.asList("January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"));
+
 
     public StepTracker() {
-        //this.defaultStepsArray = initDefaultArray();
-        initStorage();
-        testInit();
-    }
 
-    //todo delete for production
-    private void testInit() {
-        ArrayList<Integer> arr = new ArrayList<>();
-        Random random = new Random(47);
-        for (int i = 0; i < 30; i++) {
-            arr.add(random.nextInt(7000, 15001));
-        }
-        storage.put("December", arr);
+        initStorage();
     }
 
 
     private void initStorage() {
         storage = new HashMap<>();
-        for (String month: months
-             ) {
+        for (String month : months) {
             storage.put(month, initDefaultArray());
         }
     }
-    
+
     private ArrayList<Integer> initDefaultArray() {
         ArrayList<Integer> arrayList = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
@@ -50,13 +47,9 @@ public class StepTracker {
     }
 
     public void setTarget(int target) {
-        if (target < 0 || target >= 50000)
-            System.out.println("Bullshit");
-        else {
             this.target = target;
             System.out.println("New goal has been set: " + target + " steps");
         }
-    }
 
     public void printStats(String month) {
         if (!storage.containsKey(month))
@@ -93,7 +86,8 @@ public class StepTracker {
         for (int i = 0; i < 30; i++) {
             if (i == 29) {
                 System.out.print(i + 1 + " день: " + arrayList.get(i));
-                return;}
+                return;
+            }
 
             System.out.print(i + 1 + " день: " + arrayList.get(i) + ", ");
         }
@@ -103,8 +97,7 @@ public class StepTracker {
 
     private void monthTotal(String month, ArrayList<Integer> arrayList) {
         int total = 0;
-        for (Integer i : arrayList
-        ) {
+        for (Integer i : arrayList) {
             total += i;
         }
 
@@ -124,8 +117,7 @@ public class StepTracker {
         ArrayList<Integer> arrayList = storage.get(month);
         int avg = 0;
 
-        for (Integer i : arrayList
-        ) {
+        for (Integer i : arrayList) {
             avg += i;
         }
         avg = avg / arrayList.size();
@@ -137,8 +129,7 @@ public class StepTracker {
     private void monthTotalDistance(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int total = 0;
-        for (Integer i : arrayList
-        ) {
+        for (Integer i : arrayList) {
             total += i;
         }
 
@@ -151,8 +142,7 @@ public class StepTracker {
     private void monthCalories(String month) {
         ArrayList<Integer> arrayList = storage.get(month);
         int total = 0;
-        for (Integer i : arrayList
-        ) {
+        for (Integer i : arrayList) {
             total += i;
         }
 
@@ -170,12 +160,14 @@ public class StepTracker {
         for (Integer integer : arrayList) {
             if (integer > target) {
                 count++;
-                if (count > best)
+                if (count > best) {
                     best = count;
+                }
             }
 
-            if (integer <= target)
+            if (integer <= target) {
                 count = 0;
+            }
         }
 
         System.out.println("Best streak in " + month + ": " + best + " days in a row!");

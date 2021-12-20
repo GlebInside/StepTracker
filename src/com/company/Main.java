@@ -3,8 +3,10 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Main {
+
 
     static void welcomeMsg() {
         System.out.println("\nChoose option # from menu below:");
@@ -17,19 +19,22 @@ public class Main {
     public static void main(String[] args) throws IOException {
         StepTracker stepTracker = new StepTracker();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome to StepTracker!");
 
-        while(true) {
+        while (true) {
             welcomeMsg();
-            int choice = Integer.parseInt(reader.readLine());
-
+            int choice = scan.nextInt();
             switch (choice) {
                 case 1 -> {
-                    System.out.println("Insert data: Month Day Steps");
-                    String s = reader.readLine();
-                    String[] splitted = s.split(" ");
-                    stepTracker.saveSteps(splitted[0], Integer.parseInt(splitted[1]), Integer.parseInt(splitted[2]));
+                    System.out.println("Insert data: Month");
+                    String m = reader.readLine();
+                    System.out.println("Insert data: Day");
+                    int d = scan.nextInt();
+                    System.out.println("Insert data: Steps");
+                    int s = scan.nextInt();
+                    stepTracker.saveSteps(m, d, s);
                 }
                 case 2 -> {
                     System.out.println("Insert data: Month");
